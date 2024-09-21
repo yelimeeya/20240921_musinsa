@@ -1,0 +1,24 @@
+
+### 브랜드 추가
+POST http://localhost:8080/api/brands
+Content-Type: application/json
+
+{
+  "name": "New Brand"
+}
+
+### 브랜드 수정
+PUT http://localhost:8080/api/brands/1
+Content-Type: application/json
+
+{
+  "name": "Updated Brand Name"
+}
+
+### 브랜드 삭제
+DELETE http://localhost:8080/api/brands/1
+
+###
+
+
+
