@@ -1,5 +1,6 @@
 package com.preassignment.musinsa.display.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,8 +20,4 @@ public class Category {
   private String name;
 
   public Category() {}
-
-  public Category(String name) {
-    this.name = name;
-  }
 }

@@ -2,45 +2,33 @@
 GET http://localhost:8080/api/products/category/lowest-prices
 
 ### 단일 브랜드의 전체 카테고리 상품 구매 시 최저가 조회
-GET http://localhost:8080/api/products/brand/1/lowest-total-price
+GET http://localhost:8080/api/products/brand/lowest-prices
 
 ### 특정 카테고리에서 최저가 및 최고가 상품 조회
-GET http://localhost:8080/api/products/category/상의/price-range
+GET http://localhost:8080/api/products/category/price-range?categoryName=상의
 
 ### 상품 추가
 POST http://localhost:8080/api/products
 Content-Type: application/json
 
 {
-  "category": {
-    "id": 1,
-    "name": "상의"
-  },
-  "brand": {
-    "id": 1,
-    "name": "A"
-  },
+  "category": 1,
+  "brand": 1,
   "price": 12000
 }
 
 ### 상품 수정
-PUT http://localhost:8080/api/products/1
+PUT http://localhost:8080/api/products/73
 Content-Type: application/json
 
 {
-  "category": {
-    "id": 1,
-    "name": "상의"
-  },
-  "brand": {
-    "id": 1,
-    "name": "A"
-  },
-  "price": 13000
+  "category": 1,
+  "brand": 1,
+  "price": 22000
 }
 
 ### 상품 삭제
-DELETE http://localhost:8080/api/products/1
+DELETE http://localhost:8080/api/products/73
 
 ###
 

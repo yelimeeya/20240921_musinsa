@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
-  // 기본적인 CRUD 메서드를 상속받음 (save, findById, deleteById 등)
 }
