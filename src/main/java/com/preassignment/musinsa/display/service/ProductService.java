@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class ProductService {
 
@@ -182,12 +181,18 @@ public class ProductService {
     Product product = productRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("해당 상품을 찾을 수 없습니다."));
 
-    // 카테고리와 브랜드 조회
+    // 카테고리 존재 여부 확인
     Category category = categoryRepository.findById(productRequest.getCategory())
         .orElseThrow(() -> new RuntimeException("해당 카테고리를 찾을 수 없습니다."));
 
+    // 브랜드 존재 여부 확인
     Brand brand = brandRepository.findById(productRequest.getBrand())
         .orElseThrow(() -> new RuntimeException("해당 브랜드를 찾을 수 없습니다."));
+
+    // 브랜드의 카테고리에 최소 하나의 상품이 남는지 확인
+    if (productRepository.countByCategoryAndBrand(category, brand) == 1) {
+      throw new RuntimeException("브랜드의 카테고리에는 최소 하나의 상품이 존재해야 합니다.");
+    }
 
     product.setCategory(category);
     product.setBrand(brand);
@@ -202,7 +207,14 @@ public class ProductService {
     Product product = productRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("해당 상품을 찾을 수 없습니다."));
 
+    Category category = product.getCategory();
+    Brand brand = product.getBrand();
+
+    // 브랜드의 카테고리에 최소 하나의 상품이 남는지 확인
+    if (productRepository.countByCategoryAndBrand(category, brand) == 1) {
+      throw new RuntimeException("브랜드의 카테고리에는 최소 하나의 상품이 존재해야 합니다.");
+    }
+
     productRepository.delete(product);
   }
 }
-

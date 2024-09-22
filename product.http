@@ -5,7 +5,7 @@ GET http://localhost:8080/api/products/category/lowest-prices
 GET http://localhost:8080/api/products/brand/lowest-prices
 
 ### 특정 카테고리에서 최저가 및 최고가 상품 조회
-GET http://localhost:8080/api/products/category/price-range?categoryName=상의
+GET http://localhost:8080/api/products/category/price-range?categoryName=모자
 
 ### 상품 추가
 POST http://localhost:8080/api/products
