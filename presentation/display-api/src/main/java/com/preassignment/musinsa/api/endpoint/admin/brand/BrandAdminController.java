@@ -1,4 +1,4 @@
-package com.preassignment.musinsa.api.endpoint.brand;
+package com.preassignment.musinsa.api.endpoint.admin.brand;
 
 import com.preassignment.musinsa.app.service.brand.BrandService;
 import com.preassignment.musinsa.domain.brand.request.BrandRequest;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/brands")
-public class BrandController {
+@RequestMapping("/private-api/brands")
+public class BrandAdminController {
 
   private final BrandService brandService;
 
   @Autowired
-  public BrandController(BrandService brandService) {
+  public BrandAdminController(BrandService brandService) {
     this.brandService = brandService;
   }
 

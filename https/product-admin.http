@@ -1,0 +1,30 @@
+### 상품 추가
+POST http://localhost:8080/private-api/products
+Content-Type: application/json
+
+{
+  "category": 1,
+  "brand": 1,
+  "price": 12000
+}
+
+### 상품 수정
+PUT http://localhost:8080/private-api/products/73
+Content-Type: application/json
+
+{
+  "category": 1,
+  "brand": 1,
+  "price": 22000
+}
+
+### 상품 삭제
+DELETE http://localhost:8080/private-api/products/73
+
+###
+
+
+
+
+
+

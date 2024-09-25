@@ -79,11 +79,10 @@
     - H2 콘솔에서 DB 데이터를 직접 조회하거나 변경할 수 있습니다.
       ![img.png](img.png)
     - 접속 정보는 아래와 같습니다
-        - JDBC URL: `jdbc:h2:mem:{generate-unique-name}`
+        - JDBC URL: `jdbc:h2:mem:test`
         - Username: `sa`
         - Password: (비워둠)
-    - generate-unique-name은 Spring Boot 로그에서 확인 가능합니다.
-      ![img_1.png](img_1.png)
+
 ---
 
 ### API 문서
@@ -222,5 +221,10 @@
     - display-application: 애플리케이션 서비스와 비즈니스 로직을 처리하는 모듈입니다. API의 핵심 로직이 위치하며, 각 도메인 객체와 상호작용하는 계층입니다.
     - display-api: 외부에 제공하는 API를 정의하는 모듈입니다. 주로 컨트롤러와 DTO가 위치하며, REST API 요청을 처리합니다.
     - display-database: 데이터베이스 관련 설정과 리포지토리를 관리하는 모듈입니다. JPA 설정, 데이터베이스 스키마 관리 등의 기능을 처리합니다.
-
+- (추후 개선) **어드민용 API** 분리:
+  - 서버 간 API는 별도의 모듈로 분리하여 추후 접근 통제를 할 수 있도록 합니다.
+- **redis**
+- **CircuitBreaker**
 ---
+
+      

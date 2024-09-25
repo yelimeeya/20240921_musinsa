@@ -7,33 +7,4 @@ GET http://localhost:8080/api/products/brand/lowest-prices
 ### 특정 카테고리에서 최저가 및 최고가 상품 조회
 GET http://localhost:8080/api/products/category/price-range?categoryName=모자
 
-### 상품 추가
-POST http://localhost:8080/api/products
-Content-Type: application/json
-
-{
-  "category": 1,
-  "brand": 1,
-  "price": 12000
-}
-
-### 상품 수정
-PUT http://localhost:8080/api/products/73
-Content-Type: application/json
-
-{
-  "category": 1,
-  "brand": 1,
-  "price": 22000
-}
-
-### 상품 삭제
-DELETE http://localhost:8080/api/products/73
-
 ###
-
-
-
-
-
-

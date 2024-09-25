@@ -1,4 +1,5 @@
 dependencies {
     implementation(project(":display-domain"))
     implementation(project(":display-database"))
+    implementation(project(":redis"))
 }

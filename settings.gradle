@@ -4,20 +4,14 @@ include(
     "display-api",
     "display-application",
     "display-domain",
-    "display-database"
+    "display-database",
+    "redis"
 )
 
 project(":display-api").projectDir = file("presentation/display-api")
 project(":display-application").projectDir = file("application/display-application")
 project(":display-domain").projectDir = file("domain/display-domain")
 project(":display-database").projectDir = file("infrastructure/database/display-database")
-//include 'infrastructure'
-//include 'presentation:display-api'
-//findProject(':presentation:display-api')?.name = 'display-api'
-//include 'application:display-application'
-//findProject(':application:display-application')?.name = 'display-application'
-//include 'domain:display-domain'
-//findProject(':domain:display-domain')?.name = 'display-domain'
-//include 'infrastructure:database:display-database'
-//findProject(':infrastructure:database:display-database')?.name = 'display-database'
-//
+project(":redis").projectDir = file("infrastructure/cache/redis")
+include 'presentation:display-admin-api'
+findProject(':presentation:display-admin-api')?.name = 'display-admin-api'

@@ -28,8 +28,8 @@ public class ProductQueryServiceImpl implements ProductQueryService {
     List<Product> categoryLowestPriceList = products.stream()
         .map(ProductEntity::toDomain)
         .collect(Collectors.groupingBy(product -> product.getCategory().getName()))
-        .entrySet().stream()
-        .map(entry -> entry.getValue().stream()
+        .values().stream()
+        .map(productList -> productList.stream()
             .min(Comparator.comparingInt(Product::getPrice))
             .orElseThrow())
         .map(lowestProduct -> new Product(
@@ -96,7 +96,8 @@ public class ProductQueryServiceImpl implements ProductQueryService {
       }
     }
 
-    return new BrandPriceResponse(bestBrand, bestCategoryPrices, String.format("%,d", lowestTotalPrice));
+    return new BrandPriceResponse(bestBrand, bestCategoryPrices,
+        String.format("%,d", lowestTotalPrice));
   }
 
   @Override
