@@ -1,4 +1,4 @@
-package com.preassignment.musinsa.api.endpoint.product;
+package com.preassignment.musinsa.api.endpoint.display.product;
 
 import com.preassignment.musinsa.app.service.product.ProductService;
 import com.preassignment.musinsa.domain.brand.respose.BrandPriceResponse;

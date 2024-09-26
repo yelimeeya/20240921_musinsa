@@ -58,13 +58,25 @@ private final RedisService redisService;
 
   public void addProduct(ProductRequest productRequest) {
     productCommendService.addProduct(productRequest);
+
+    redisService.delValue("lowestPricesByCategory");
+    redisService.delValue("lowestPricesByBrand");
+    redisService.delValuesByPattern("priceRangeByCategory:*");
   }
 
   public void updateProduct(Long id, ProductRequest productRequest) {
     productCommendService.updateProduct(id, productRequest);
+
+    redisService.delValue("lowestPricesByCategory");
+    redisService.delValue("lowestPricesByBrand");
+    redisService.delValuesByPattern("priceRangeByCategory:*");
   }
 
   public void deleteProduct(Long id) {
     productCommendService.deleteProduct(id);
+
+    redisService.delValue("lowestPricesByCategory");
+    redisService.delValue("lowestPricesByBrand");
+    redisService.delValuesByPattern("priceRangeByCategory:*");
   }
 }

@@ -14,5 +14,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
   // 브랜드로 상품 수 조회
   long countByBrand(BrandEntity brand);
+
+  // 브랜드 삭제
+  void deleteByBrand(BrandEntity brandEntity);
 }
 

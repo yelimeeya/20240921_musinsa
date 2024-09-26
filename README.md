@@ -19,6 +19,163 @@
 
 ---
 
+## 프로젝트 구조
+   ```bash
+├── application
+│   └── display-application
+│       ├── build.gradle
+│       └── src
+│           ├── main
+│           │   ├── java
+│           │   │   └── com
+│           │   │       └── preassignment
+│           │   │           └── musinsa
+│           │   │               └── app
+│           │   │                   └── service
+│           │   │                       ├── brand
+│           │   │                       │   └── BrandService.java
+│           │   │                       └── product
+│           │   │                           └── ProductService.java
+│           │   └── resources
+│           └── test
+│               ├── java
+│                   └── com
+│                       └── preassignment
+│                           └── musinsa
+│                               └── app
+│                                   └── service
+│                                       ├── brand
+│                                       │   └── BrandServiceTest.java
+│                                       └── product
+│                                           └── ProductServiceTest.java
+|
+├── build.gradle
+├── domain
+│   └── display-domain
+│       ├── build.gradle
+│       └── src
+│           ├── main
+│               ├── java
+│                   └── com
+│                       └── preassignment
+│                           └── musinsa
+│                               └── domain
+│                                    ├── RootDomain.java
+│                                    ├── brand
+│                                   │   ├── Brand.java
+│                                   │   ├── BrandCommendService.java
+│                                   │   ├── dto
+│                                   │   ├── request
+│                                   │   │   └── BrandRequest.java
+│                                   │   └── respose
+│                                   │       └── BrandPriceResponse.java
+│                                   ├── category
+│                                   │   ├── Category.java
+│                                   │   ├── dto
+│                                   │   │   └── CategoryPriceRange.java
+│                                   │   ├── request
+│                                   │   └── response
+│                                   │       └── CategoryPriceResponse.java
+│                                   └── product
+│                                       ├── Product.java
+│                                       ├── ProductCommendService.java
+│                                       ├── ProductQueryService.java
+│                                       ├── dto
+│                                       ├── request
+│                                       │   └── ProductRequest.java
+│                                       └── response
+├── https
+│   ├── brand-admin.http
+│   ├── product-admin.http
+│   └── product-display.http
+|
+├── infrastructure
+│   ├── cache
+│   │   └── redis
+│   │       ├── build.gradle
+│   │       └── src
+│   │           ├── main
+│   │               ├── java
+│   │               │   └── com
+│   │               │       └── preassignment
+│   │               │           └── musinsa
+│   │               │               └── cache
+│   │               │                   ├── config
+│   │               │                   │   ├── EmbeddedRedisConfig.java
+│   │               │                   │   └── RedisConfig.java
+│   │               │                   └── service
+│   │               │                       └── RedisService.java
+│   │               └── resources
+│   │                   └── redis.yml
+│   └── database
+│       └── display-database
+│           ├── build.gradle
+│           └── src
+│               ├── main
+│                   ├── java
+│                   │   └── com
+│                   │       └── preassignment
+│                   │           └── musinsa
+│                   │               └── database
+│                   │                   ├── brand
+│                   │                   │   ├── BrandCommendServiceImpl.java
+│                   │                   │   ├── BrandEntity.java
+│                   │                   │   └── BrandRepository.java
+│                   │                   ├── category
+│                   │                   │   ├── CategoryEntity.java
+│                   │                   │   └── CategoryRepository.java
+│                   │                   ├── config
+│                   │                   │   └── h2DatabaseConfig.java
+│                   │                   └── product
+│                   │                       ├── ProductCommendServiceImpl.java
+│                   │                       ├── ProductEntity.java
+│                   │                       ├── ProductQueryServiceImpl.java
+│                   │                       └── ProductRepository.java
+│                   └── resources
+│                       ├── database.yml
+│                       └── import.sql
+│
+├── presentation
+│   └── display-api
+│       ├── build.gradle
+│       └── src
+│           ├── main
+│           │   ├── java
+│           │   │   └── com
+│           │   │       └── preassignment
+│           │   │           └── musinsa
+│           │   │               └── api
+│           │   │                   ├── DisplayApiApplication.java
+│           │   │                   └── endpoint
+│           │   │                       ├── admin
+│           │   │                       │   ├── brand
+│           │   │                       │   │   └── BrandAdminController.java
+│           │   │                       │   └── product
+│           │   │                       │       └── ProductAdminController.java
+│           │   │                       └── display
+│           │   │                           └── product
+│           │   │                               └── ProductController.java
+│           │   └── resources
+│           │       └── application.yml
+│           └── test
+│               ├── java
+│                   └── com
+│                       └── preassignment
+│                           └── musinsa
+│                               └── api
+│                                   └── endpoint
+│                                       ├── admin
+│                                       │   ├── brand
+│                                       │   │   └── BrandAdminControllerTest.java
+│                                       │   └── product
+│                                       │       └── ProductAdminControllerTest.java
+│                                       └── display
+│                                           └── product
+│                                               └── ProductControllerTest.java
+└── settings.gradle
+ ```
+---
+
 ### 주요 기능
 
 1. **카테고리별 최저가격 브랜드와 상품 가격 조회 API**
@@ -37,11 +194,12 @@
 
 ### 기술 스택
 
-- **언어**: Java (Spring Boot)
-- **프레임워크**: Spring Boot, Spring JPA, Hibernate
-- **데이터베이스**: H2 (로컬 DB)
-- **빌드 도구**: Gradle
-- **테스트**: JUnit, Mockito
+- **Language**: Java
+- **Frameworks**: Spring Boot, Spring JPA, Hibernate
+- **Database**: H2 (로컬 DB)
+- **Caching**: (embedded) Redis
+- **Build Tool**: Gradle
+- **Test**: JUnit, Mockito
 
 ---
 
@@ -81,7 +239,7 @@
     - 접속 정보는 아래와 같습니다
         - JDBC URL: `jdbc:h2:mem:test`
         - Username: `sa`
-        - Password: (비워둠)
+        - Password: (공백)
 
 ---
 
@@ -160,7 +318,7 @@
 
 #### 4. 브랜드 및 상품을 추가 / 업데이트 / 삭제하는 API
 
-- **POST** `/api/brands`
+- **POST** `/private-api/brands`
     - 새로운 브랜드를 추가합니다.
 
 ```json
@@ -169,7 +327,7 @@
 }
 ```
 
-- **PUT** `/api/brands/{id}`
+- **PUT** `/private-api/brands/{id}`
     - 브랜드를 수정합니다.
 
 ```json
@@ -178,11 +336,11 @@
 }
 ```
 
-- **DELETE** `/api/brands/{id}`
+- **DELETE** `/private-api/brands/{id}`
     - 브랜드를 삭제합니다.
 
 
-- **POST** `/api/products`
+- **POST** `/private-api/products`
     - 상품을 추가합니다
 ```json
 {
@@ -192,7 +350,7 @@
 }
 ```
 
-- **PUT** `/api/products/{id}`
+- **PUT** `/private-api/products/{id}`
     - 상품를 수정합니다.
 
 ```json
@@ -203,7 +361,7 @@
 }
 ```
 
-- **DELETE** `/api/products/{id}`
+- **DELETE** `/private-api/products/{id}`
     - 상품를 삭제합니다.
 
 ---
@@ -223,8 +381,8 @@
     - display-database: 데이터베이스 관련 설정과 리포지토리를 관리하는 모듈입니다. JPA 설정, 데이터베이스 스키마 관리 등의 기능을 처리합니다.
 - (추후 개선) **어드민용 API** 분리:
   - 서버 간 API는 별도의 모듈로 분리하여 추후 접근 통제를 할 수 있도록 합니다.
-- **redis**
-- **CircuitBreaker**
----
+- embedded **Redis** 적용:
+  - 조회 API 응답 값을 Redis에 캐싱하여 데이터베이스 접근을 최소화 합니다.
+- Code Formatting: google-java-format
 
-      
+

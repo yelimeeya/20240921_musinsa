@@ -5,6 +5,7 @@ import com.preassignment.musinsa.domain.brand.BrandCommendService;
 import com.preassignment.musinsa.domain.brand.request.BrandRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +35,7 @@ public class BrandCommendServiceImpl implements BrandCommendService {
     brandRepository.save(brandEntity);
   }
 
+  @Transactional
   @Override
   public void deleteBrand(Long id) {
     BrandEntity brandEntity = brandRepository.findById(id)
@@ -44,6 +46,7 @@ public class BrandCommendServiceImpl implements BrandCommendService {
       throw new RuntimeException("브랜드의 카테고리에는 최소 하나의 상품이 존재해야 합니다.");
     }
 
+    productRepository.deleteByBrand(brandEntity);
     brandRepository.delete(brandEntity);
   }
 }

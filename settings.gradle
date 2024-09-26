@@ -13,5 +13,3 @@ project(":display-application").projectDir = file("application/display-applicati
 project(":display-domain").projectDir = file("domain/display-domain")
 project(":display-database").projectDir = file("infrastructure/database/display-database")
 project(":redis").projectDir = file("infrastructure/cache/redis")
-include 'presentation:display-admin-api'
-findProject(':presentation:display-admin-api')?.name = 'display-admin-api'
